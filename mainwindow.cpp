@@ -16,7 +16,6 @@ MainWindow::MainWindow(QWidget *parent) :
     bombs_found = 0;
     cells_left = 0;
 
-
 }
 
 MainWindow::~MainWindow()
