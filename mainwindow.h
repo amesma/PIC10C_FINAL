@@ -17,6 +17,12 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    bool game_start;
+    bool game_done;
+    int times_played;
+    int cells_flagged;
+    int bombs_found;
+    int cells_left;
 };
 
 #endif // MAINWINDOW_H

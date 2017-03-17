@@ -1,10 +1,13 @@
+#include "minesweeper.h"
+#include <QtGlobal>
+
 Minesweeper::Minesweeper()
 {
     num_tiles = 9;
     num_mines = 10;
     for (size_t i = 0; i < num_tiles; i++)
     {
-        for (size_t j = 0; j < num_tiles; j+++)
+        for (size_t j = 0; j < num_tiles; j++)
         {
             //initialization
             gameBoard[i][j] = 0;
@@ -12,12 +15,11 @@ Minesweeper::Minesweeper()
     }
 }
 //so far, no memory allocated on heap
-virtual Minesweeper::~Minesweeper(){
-
+Minesweeper::~Minesweeper(){
 
 }
 
-void fillBoard(){
+void Minesweeper::fillBoard(){
     for (size_t i = 0; i < 10; i++){
         int row, col;
 
@@ -29,28 +31,35 @@ void fillBoard(){
         gameBoard[row][col] = num_mines;
 
         if ( (row-1) != -1 && (col -1) != -1 && gameBoard[row-1][col-1] != num_mines)
-                    mineBoard[row-1][column-1]++;
+                    gameBoard[row-1][col-1]++;
 
-                if ( (row-1) != -1 && mineBoard[row-1][column] != num_mines)
-                    mineBoard[row-1][column]++;
+                if ( (row-1) != -1 && gameBoard[row-1][col] != num_mines)
+                    gameBoard[row-1][col]++;
 
-                if ( (row-1) != -1 && (column + 1) != 10 && mineBoard[row-1][column+1] != num_mines)
-                    mineBoard[row-1][column+1]++;
+                if ( (row-1) != -1 && (col + 1) != 10 && gameBoard[row-1][col+1] != num_mines)
+                    gameBoard[row-1][col+1]++;
 
-                if ( (column -1) != -1 && mineBoard[row][column-1] != num_mines)
-                    mineBoard[row][column-1]++;
+                if ( (col -1) != -1 && gameBoard[row][col-1] != num_mines)
+                    gameBoard[row][col-1]++;
 
-                if ( (column + 1) != 10 && mineBoard[row][column+1] != num_mines)
-                    mineBoard[row][column+1]++;
+                if ( (col + 1) != 10 && gameBoard[row][col+1] != num_mines)
+                    gameBoard[row][col+1]++;
 
-                if ( (row+1) != 10 && (column -1) != -1 && mineBoard[row+1][column-1] != num_mines)
-                    mineBoard[row+1][column-1]++;
+                if ( (row+1) != 10 && (col -1) != -1 && gameBoard[row+1][col-1] != num_mines)
+                    gameBoard[row+1][col-1]++;
 
-                if ( (row+1) != 10 && mineBoard[row+1][column] != num_mines)
-                    mineBoard[row+1][column]++;
+                if ( (row+1) != 10 && gameBoard[row+1][col] != num_mines)
+                    gameBoard[row+1][col]++;
 
-                if ( (row+1) != 10 && (column+1) != 10 && mineBoard[row+1][column+1] != num_mines)
-                    mineBoard[row+1][column+1]++;
+                if ( (row+1) != 10 && (col+1) != 10 && gameBoard[row+1][col+1] != num_mines)
+                    gameBoard[row+1][col+1]++;
             }
     }
+
+bool Minesweeper::isMine(int x, int y) const {
+    return (gameBoard[x][y] == num_mines);
+}
+
+int Minesweeper::getTile(int x, int y) const {
+    return gameBoard[x][y];
 }

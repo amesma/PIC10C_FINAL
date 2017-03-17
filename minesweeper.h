@@ -1,7 +1,8 @@
 #ifndef MINESWEEPER_H
 #define MINESWEEPER_H
 
-#include <stdlib.h>
+#include <cstdlib>
+
 class Minesweeper{
 public:
     void newBoard();
@@ -14,8 +15,8 @@ public:
 private:
     int num_tiles;
     int num_mines;
-    int gameBoard[][];
+    int gameBoard[9][9];
 
-}
+};
 
 #endif // MINESWEEPER_H
