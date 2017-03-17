@@ -9,9 +9,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     //initialize some play variables
-    game_won = false;
+    game_start = false;
     game_done = false;
     times_played = 0;
+    cells_flagged = 0;
+    bombs_found = 0;
+    cells_left = 0;
 
 
 }

@@ -27,16 +27,6 @@
      <string>New Game?</string>
     </property>
    </widget>
-   <widget class="QWidget" name="gameBoard" native="true">
-    <property name="geometry">
-     <rect>
-      <x>79</x>
-      <y>9</y>
-      <width>231</width>
-      <height>191</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLCDNumber" name="userScore">
     <property name="geometry">
      <rect>
@@ -46,6 +36,17 @@
       <height>23</height>
      </rect>
     </property>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>10</y>
+      <width>201</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gameLayout"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
