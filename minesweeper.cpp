@@ -27,5 +27,30 @@ void fillBoard(){
         }while(gameBoard[row][col] == num_mines);
 
         gameBoard[row][col] = num_mines;
+
+        if ( (row-1) != -1 && (col -1) != -1 && gameBoard[row-1][col-1] != num_mines)
+                    mineBoard[row-1][column-1]++;
+
+                if ( (row-1) != -1 && mineBoard[row-1][column] != num_mines)
+                    mineBoard[row-1][column]++;
+
+                if ( (row-1) != -1 && (column + 1) != 10 && mineBoard[row-1][column+1] != num_mines)
+                    mineBoard[row-1][column+1]++;
+
+                if ( (column -1) != -1 && mineBoard[row][column-1] != num_mines)
+                    mineBoard[row][column-1]++;
+
+                if ( (column + 1) != 10 && mineBoard[row][column+1] != num_mines)
+                    mineBoard[row][column+1]++;
+
+                if ( (row+1) != 10 && (column -1) != -1 && mineBoard[row+1][column-1] != num_mines)
+                    mineBoard[row+1][column-1]++;
+
+                if ( (row+1) != 10 && mineBoard[row+1][column] != num_mines)
+                    mineBoard[row+1][column]++;
+
+                if ( (row+1) != 10 && (column+1) != 10 && mineBoard[row+1][column+1] != num_mines)
+                    mineBoard[row+1][column+1]++;
+            }
     }
 }
