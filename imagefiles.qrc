@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>button_1.png</file>
+        <file>button_2.png</file>
+        <file>button_3.png</file>
+        <file>button_4.png</file>
+        <file>button_5.png</file>
+        <file>button_6.png</file>
+        <file>button_7.png</file>
+        <file>button_8.png</file>
+        <file>norm_button.png</file>
+    </qresource>
+</RCC>
