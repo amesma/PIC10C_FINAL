@@ -3,9 +3,7 @@
 
 #include <cstdlib>
 
-
 class Minesweeper{
-
 public:
     void newBoard();
     Minesweeper(int board_size);

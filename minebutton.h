@@ -6,12 +6,9 @@
 #include <QPushButton>
 
 class mineButton: public QPushButton{
-Q_OBJECT
 
 public:
-    mineButton(QWidget* parent);
     mineButton();
     ~mineButton();
 private:
-
 };

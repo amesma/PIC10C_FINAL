@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QSignalMapper>
 #include "minesweeper.h"
 #include "minebutton.h"
 
@@ -15,13 +14,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget* parent = 0);
-    void changeButton(mineButton* button, int row, int col);
+    explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void win_game();
-    void lose_game();
-    void reset_game();
-    int num_mines = 9;
 
 private:
     Ui::MainWindow *ui;
@@ -34,7 +28,8 @@ private:
     int cells_flagged;
     int bombs_found;
     int cells_left;
-    int hasFlag[9][9];
+    int hasMine[9][9];
+    void changeButton(mineButton* button);
 
 protected slots:
     /**
@@ -43,10 +38,17 @@ protected slots:
       void button_pressed(); reacts when user clicks on a tile/other buttons
     */
     void reset();
-    void button_pressed(mineButton* button);
+    void button_pressed();
 
 public slots:
-    void showTiles(QString);
+    void showCell();
+
+public:
+    void win_game();
+    void lose_game();
+    void reset_game();
+
+    int num_mines = 9;
 
 };
 
