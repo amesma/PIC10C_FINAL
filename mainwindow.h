@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "minesweeper.h"
 
 namespace Ui {
 class MainWindow;
@@ -18,6 +19,7 @@ public:
 private:
     Ui::MainWindow *ui;
     Minesweeper *m;
+    QSignalMapper *mapper;
 
     bool game_start;
     bool game_done;
@@ -29,9 +31,8 @@ private:
 protected slots:
     /**
       Slots needed:
-      void reset();
-      void buttonReleased();
-      void buttonPressed();
+      void reset() to reset the game
+      void button_pressed(); reacts when user clicks on a tile/other buttons
     */
     void reset();
     void button_pressed();
@@ -43,6 +44,8 @@ public:
     void win_game();
     void lose_game();
     void reset_game();
+
+    int num_mines = 9;
 
 };
 
