@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "minesweeper.h"
+#include "minebutton.h"
 
 namespace Ui {
 class MainWindow;
@@ -27,6 +28,8 @@ private:
     int cells_flagged;
     int bombs_found;
     int cells_left;
+    int hasMine[9][9];
+    void changeButton(mineButton* button);
 
 protected slots:
     /**
