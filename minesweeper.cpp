@@ -31,7 +31,7 @@ void Minesweeper::fillBoard(){
         gameBoard[row][col] = num_mines;
 
         if ( (row-1) != -1 && (col -1) != -1 && gameBoard[row-1][col-1] != num_mines)
-                    gameBoard[row-1][col-1]++;
+            gameBoard[row-1][col-1]++;
 
                 if ( (row-1) != -1 && gameBoard[row-1][col] != num_mines)
                     gameBoard[row-1][col]++;

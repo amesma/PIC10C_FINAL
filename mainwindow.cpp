@@ -23,25 +23,26 @@ MainWindow::MainWindow(QWidget *parent) :
             hasFlag[i][j] = 0;
         }
     }
-
+    ui->gameLayout->setSpacing(1);
+    int button_size = 50;
     //set up minebuttons
     for (size_t row = 0; row < 9; ++row)
     {
         for (size_t col = 0; col < 9; ++col){
-            mineButton new_button = new mineButton("");
-            button->setIcon(QIcon(QString(":/norm_button.png")));
-            button->setIconSize(QSize(50,50));
-            ui->gameLayout->add(new_button, i, j);
+            mineButton* new_button = new mineButton();
+            new_button->setIcon(QIcon(QString(":/norm_button.png")));
+            new_button->setIconSize(QSize(button_size,button_size));
+            ui->gameLayout->addWidget(new_button, row, col);
         }
     }
     connect(ui->newGame, SIGNAL(clicked()), this, SLOT(reset()));
 
     //game begins here
-    game = new Minesweeper();
+    m = new Minesweeper();
     //set all flags/bombs in correct places
 
     //sets up spacing for game
-    ui->gameLayout->setSpacing(1);
+
 
 }
 
@@ -78,16 +79,24 @@ void MainWindow::reset() {
   if value is 2, change value to 2
   etc
 */
-void MainWindow::changeButton(mineButton *button){
+void MainWindow::changeButton(mineButton* button, int row, int col){
 
 }
 
-void game_lost(){
+void MainWindow::win_game(){
+//should display second window that says congrats and ask them to play again
+    //record number of times played
+}
+
+void MainWindow::lose_game(){
+//should lose the game and display second window
+    //record losses
+}
+
+void MainWindow::showTiles(QString){
 
 }
 
-void game_won(){
+void MainWindow::button_pressed(mineButton *button){
 
 }
-
-

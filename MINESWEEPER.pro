@@ -25,7 +25,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    minesweeper.cpp
+    minesweeper.cpp \
+    minebutton.cpp
 
 HEADERS  += mainwindow.h \
     minesweeper.h \
