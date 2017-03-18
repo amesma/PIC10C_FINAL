@@ -29,6 +29,8 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         for (size_t col = 0; col < 9; ++col){
             mineButton new_button = new mineButton("");
+            button->setIcon(QIcon(QString(":/norm_button.png")));
+            button->setIconSize(QSize(50,50));
             ui->gameLayout->add(new_button, i, j);
         }
     }
