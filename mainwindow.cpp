@@ -30,7 +30,9 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         for (size_t col = 0; col < 9; ++col){
             mineButton* new_button = new mineButton();
-            new_button->setIcon(QIcon(QString(":/norm_button.png")));
+            QPixmap pix(":/norm_button.png");
+            QIcon icon(pix);
+            new_button->setIcon(icon);
             new_button->setIconSize(QSize(button_size,button_size));
             ui->gameLayout->addWidget(new_button, row, col);
         }

@@ -33,3 +33,10 @@ HEADERS  += mainwindow.h \
     minebutton.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    images.qrc \
+    images.qrc \
+    images.qrc
+
+DISTFILES +=
