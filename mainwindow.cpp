@@ -30,12 +30,19 @@ MainWindow::MainWindow(QWidget *parent) :
         for (size_t col = 0; col < 9; ++col){
 <<<<<<< HEAD
             mineButton* new_button = new mineButton();
+<<<<<<< HEAD
             QPixmap pixmap(":/imagefiles/button_1.png");
             QIcon ButtonIcon(pixmap);
             new_button->setIcon(ButtonIcon);
            // new_button->setIcon(QIcon(":/imagefiles/norm_button.png"));
            new_button->setIconSize(QSize(button_size,button_size));
             //new_button->setFixedSize(button_size, button_size);
+=======
+            QPixmap pix(":/norm_button.png");
+            QIcon icon(pix);
+            new_button->setIcon(icon);
+            new_button->setIconSize(QSize(button_size,button_size));
+>>>>>>> window_tester
             ui->gameLayout->addWidget(new_button, row, col);
 =======
             mineButton new_button = new mineButton("");

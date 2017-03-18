@@ -33,7 +33,16 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
+<<<<<<< HEAD
 DISTFILES +=
 
 RESOURCES += \
     imagefiles.qrc
+=======
+RESOURCES += \
+    images.qrc \
+    images.qrc \
+    images.qrc
+
+DISTFILES +=
+>>>>>>> window_tester
