@@ -12,6 +12,7 @@ public:
     mineButton(QWidget* parent);
     mineButton();
     ~mineButton();
+    void mousePressEvent(QMouseEvent *e);
 private:
 
 };

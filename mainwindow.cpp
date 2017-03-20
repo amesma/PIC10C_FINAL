@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     times_played = 0;
     cells_flagged = 0;
     bombs_found = 0;
-    cells_left = 0;
+    cells_left = 81 - 9;
 
     //in the beginning no mines are flagged
     for (size_t i = 0; i < 9; ++i){
@@ -35,15 +35,26 @@ MainWindow::MainWindow(QWidget *parent) :
             new_button->setIcon(icon);
             new_button->setIconSize(QSize(button_size,button_size));
             ui->gameLayout->addWidget(new_button, row, col);
+            //map to signal so you connect each button to a click
+            QString location = QString::number(row) + " " + QString::number(col);
+            mapper->setMapping(new_button, location);
+            connect(new_button, SIGNAL(pressed()), this, SLOT(button_pressed()));
         }
     }
     connect(ui->newGame, SIGNAL(clicked()), this, SLOT(reset()));
+    connect(mapper, SIGNAL(mapped(QString)), this, SLOT(show_tile(QString)));
+    connect(ui->flag_box, SIGNAL(stateChanged(int)), this, SLOT(flag_mines()));
 
     //game begins here
     m = new Minesweeper();
     //set all flags/bombs in correct places
 
     //sets up spacing for game
+    //set up win state
+    //set up lose state
+    //keep track of bombs
+    //update images (recursively?)
+
 
 
 }
@@ -65,10 +76,8 @@ void MainWindow::reset() {
 
 
     //displays the current score, reset to 0.
-   // ui->userScore->display(num_mines - cells_flagged);
 
     //start new game
-    //game = new Minesweeper();
     //reset the board
     //make board elements
 }
@@ -81,7 +90,7 @@ void MainWindow::reset() {
   if value is 2, change value to 2
   etc
 */
-void MainWindow::changeButton(mineButton* button, int row, int col){
+void MainWindow::changeButton(int row, int col, mineButton* button){
 
 }
 
@@ -95,10 +104,47 @@ void MainWindow::lose_game(){
     //record losses
 }
 
-void MainWindow::showTiles(QString){
+//should change the tile depending on what is under the button
+void MainWindow::show_tile(QString q){
+//get coordinates
+    QStringList result = q.split(" ");
+
+    int row = result[0].toInt();
+    int col = result[1].toInt();
+
+    mineButton *push = reinterpret_cast<mineButton *>(mapper->mapping(q));
+//get button pressed
+
+    //check to see if button already pressed (not implemented)
+
+    //check if win/lose (not implemented)
+
+    //recursively call to clear board
+    if ( m->getTile(row, col) == 0 ) {
+        --cells_left;
+        recurse_clear(true, row, col);
+    }
+
+    //Set the image according to the value of the cell
+    changeButton(row, col, push);
+
+    push->setFlat(true);
+
+    //If we reveal a mine, we just lost :(
+    if ( m->isMine(row,col))
+    {
+        lose_game();
+    }
+}
+
+//void MainWindow::button_pressed(mineButton *button){
+//for any potential special actions
+//}
+
+void MainWindow::recurse_clear(bool can_clear, int row, int col){
 
 }
 
-void MainWindow::button_pressed(mineButton *button){
+void MainWindow::flag_mines(){
 
 }

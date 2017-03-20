@@ -7,3 +7,7 @@ mineButton::mineButton(){
 mineButton::~mineButton(){
 
 }
+
+void mineButton::mousePressEvent(QMouseEvent *e){
+
+}

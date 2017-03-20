@@ -48,6 +48,19 @@
     </property>
     <layout class="QGridLayout" name="gameLayout"/>
    </widget>
+   <widget class="QCheckBox" name="flag_box">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>210</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Flag mines?</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
