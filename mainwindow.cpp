@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     connect(ui->newGame, SIGNAL(clicked()), this, SLOT(reset()));
     connect(mapper, SIGNAL(mapped(QString)), this, SLOT(show_tile(QString)));
-    connect(ui->flag_box, SIGNAL(stateChanged(int)), this, SLOT(flag_mines()));
+   // connect(ui->flag_box, SIGNAL(stateChanged(int)), this, SLOT(flag_mines()));
 
     //game begins here
     m = new Minesweeper();
@@ -107,7 +107,7 @@ void MainWindow::lose_game(){
 //should change the tile depending on what is under the button
 void MainWindow::show_tile(QString q){
 //get coordinates
-    QStringList result = q.split(" ");
+  /**  QStringList result = q.split(" ");
 
     int row = result[0].toInt();
     int col = result[1].toInt();
@@ -134,7 +134,7 @@ void MainWindow::show_tile(QString q){
     if ( m->isMine(row,col))
     {
         lose_game();
-    }
+    }*/
 }
 
 //void MainWindow::button_pressed(mineButton *button){
