@@ -37,6 +37,7 @@ private:
     int bombs_found;
     int cells_left;
     int hasFlag[9][9];
+    int mines = 10;
 
 protected slots:
     /**
@@ -49,9 +50,9 @@ protected slots:
     void flag_mines();
     //void button_pressed(mineButton* button, int row, int col);//add additional functions
 
-
 public slots:
-    void show_tile(QString q);
+
+    void show_tile(QString);
 
 };
 
