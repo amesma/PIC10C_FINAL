@@ -28,8 +28,8 @@ void Minesweeper::fill_board(){
         //Prevent generating mine on another mine
         do
         {
-            row = qrand() % 10;
-            col = qrand() % 10;
+            row = qrand() % 9;
+            col = qrand() % 9;
         }while(gameBoard[row][col] == num_tiles);
 
         gameBoard[row][col] = num_tiles; //Number 9 indiciates a mine
@@ -56,14 +56,16 @@ void Minesweeper::fill_board(){
      }
 
      if ( (row+1) != num_tiles && (col -1) != -1 && gameBoard[row+1][col-1] != num_mines){
-                    gameBoard[row+1][col-1]++;}
+             gameBoard[row+1][col-1]++;
+     }
 
-                if ( (row+1) != num_tiles && gameBoard[row+1][col] != num_mines){
-                    gameBoard[row+1][col]++;}
+     if ( (row+1) != num_tiles && gameBoard[row+1][col] != num_mines){
+            gameBoard[row+1][col]++;
+     }
 
-                if ( (row+1) != num_tiles && (col+1) != 10 && gameBoard[row+1][col+1] != num_mines){
-                    gameBoard[row+1][col+1]++;
-                }
+     if ( (row+1) != num_tiles && (col+1) != num_tiles && gameBoard[row+1][col+1] != num_mines){
+             gameBoard[row+1][col+1]++;
+     }
     }
 }
 
