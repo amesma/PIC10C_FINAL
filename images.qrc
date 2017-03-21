@@ -1,13 +1,16 @@
 <RCC>
     <qresource prefix="/">
-        <file>../../norm_button.png</file>
-        <file>../../button_5.png</file>
-        <file>../../button_8.png</file>
-        <file>../../button_7.png</file>
-        <file>../../button_1.png</file>
-        <file>../../button_2.png</file>
-        <file>../../button_3.png</file>
-        <file>../../button_4.png</file>
-        <file>../../button_6.png</file>
+        <file>../mine.png</file>
+        <file>../empty.png</file>
+        <file>../button_1.png</file>
+        <file>../button_2.png</file>
+        <file>../button_3.png</file>
+        <file>../button_4.png</file>
+        <file>../button_5.png</file>
+        <file>../button_6.png</file>
+        <file>../button_7.png</file>
+        <file>../button_8.png</file>
+        <file>../flag.png</file>
+        <file>../normal.png</file>
     </qresource>
 </RCC>

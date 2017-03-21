@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <iostream>
 #include <QMainWindow>
 #include <QSignalMapper>
 #include "minesweeper.h"
@@ -16,7 +17,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget* parent = 0);
-    void changeButton(int row, int col, mineButton* button);//should change to correspond to which icons are available
+    void change_button(int row, int col, mineButton* button);//should change to correspond to which icons are available
     ~MainWindow();
     void win_game();
     void lose_game();

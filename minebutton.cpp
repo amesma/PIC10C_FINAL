@@ -8,6 +8,6 @@ mineButton::~mineButton(){
 
 }
 
-void mineButton::mousePressEvent(QMouseEvent *e){
+void mineButton::mousePressEvent(QMouseEvent*){
 
 }

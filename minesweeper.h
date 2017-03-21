@@ -14,7 +14,7 @@ public:
     virtual ~Minesweeper();
     void fillBoard();
     bool isMine(int x, int y) const;
-    int getTile(int x, int y) const ;
+    int getTile(int x, int y);
 private:
     int num_tiles;
     int num_mines;

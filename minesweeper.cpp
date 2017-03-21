@@ -60,6 +60,6 @@ bool Minesweeper::isMine(int x, int y) const {
     return (gameBoard[x][y] == num_mines);
 }
 
-int Minesweeper::getTile(int x, int y) const {
+int Minesweeper::getTile(int x, int y){
     return gameBoard[x][y];
 }
