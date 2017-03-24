@@ -34,7 +34,9 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-DISTFILES +=
-
 RESOURCES += \
-    imagefiles.qrc
+    images.qrc \
+    images.qrc \
+    images.qrc
+
+DISTFILES +=
