@@ -32,8 +32,6 @@ MainWindow::MainWindow(QWidget *parent) :
             hasFlag[i][j] = 0;
         }
     }
-
-    int button_size = 100;
     //set up minebuttons
     for (int row = 0; row < 9; ++row)
     {
@@ -43,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
             QIcon icon(pix);
             new_button->setIcon(icon);
             new_button->setIconSize(QSize(button_size,button_size));
-           // new_button->setFlat(false);
+
             //map to signal so you connect each button to a click
             QString location = QString::number(row) + "," + QString::number(col);
 
@@ -87,7 +85,21 @@ void MainWindow::reset() {
     bombs_found = 0;
     cells_left = 0;
 
+    m = new Minesweeper();
 
+    for( int i = 0; i < 9; i++)
+    {
+        for( int j = 0; j < 9; j++ )
+        {
+            QString coord = QString::number(i)+","+QString::number(j);
+            mineButton *push = qobject_cast<mineButton *>(mapper->mapping(coord));
+
+            push->setIcon (QIcon(":/images/norm.png"));
+            push->setIconSize (QSize(button_size,button_size));
+            push->set_pushed(false);
+            hasFlag[i][j] = 0;
+        }
+    }
     //displays the current score, reset to 0.
 
     //start new game
@@ -140,25 +152,48 @@ void MainWindow::lose_game(){
     QMessageBox messageBox;
     messageBox.critical(0,"UH OH","You Lost!");
     messageBox.setFixedSize(500,200);
+    game_done = true;
+
+    //should show board
+    for ( int i = 0; i < 9; ++i)
+    {
+        for ( int j = 0; j < 9; ++j)
+        {
+            QString coord = QString::number(i)+","+QString::number(j);
+            mineButton *push = qobject_cast<mineButton *>(mapper->mapping(coord));
+
+            if (m->isMine(i,j) == true )
+            {
+                push->set_pushed(true);
+
+                if ( hasFlag[i][j] == 1) {
+                    push->setIcon (QIcon(QString(":/flat.png")));
+                }
+                else {
+
+                    push->setIcon (QIcon(QString(":/mine.png")));
+                }
+            }
+
+        }
+    }
 }
 
 //should change the tile depending on what is under the button
 void MainWindow::show_tile(QString q){
 
-
-
 //get coordinates
   QStringList result = q.split(",");
 
-    int row = result.at(0).toInt();
-    int col = result.at(1).toInt();
+    int row = result[0].toInt();
+    int col = result[1].toInt();
 
     mineButton *push = qobject_cast<mineButton *>(mapper->mapping(q));
 //get button pressed
 
-    if (push->isFlat())
+    if (push->is_pushed() == false)
     {
-            --cells_left;
+          --cells_left;
     }
 
     //check to see if button already pressed (not implemented)
@@ -173,17 +208,13 @@ void MainWindow::show_tile(QString q){
     //set a signal
     change_button(row, col, push);
 
-    push->setFlat(true);
+    push->set_pushed(true);
     //lose state
     if ( m->isMine(row,col))
     {
         lose_game();
     }
 }
-
-//void MainWindow::button_pressed(mineButton *button){
-//for any potential special actions
-//}
 
 void MainWindow::recurse_clear(bool can_clear, int row, int col){
 
@@ -193,5 +224,3 @@ void MainWindow::flag_mines(){
 
 
 }
-
-

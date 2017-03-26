@@ -1,19 +1,19 @@
 #include <minebutton.h>
 
-mineButton::mineButton(QWidget* parent) : QPushButton(parent)
-{
-
-}
-
 mineButton::mineButton(QString q) : QPushButton(q)
 {
-
+    pushed = false;
 }
 
 mineButton::~mineButton(){
 
 }
 
-//void mineButton::mousePressEvent(QMouseEvent*){
+bool mineButton::is_pushed(){
+    return pushed;
+}
 
-//}
+void mineButton::set_pushed(bool push)
+{
+    pushed = push;
+}

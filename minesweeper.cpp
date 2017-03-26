@@ -76,6 +76,7 @@ bool Minesweeper::isMine(int x, int y){
     return (gameBoard[x][y] == num_mines);
 }
 
+//accessor
 int Minesweeper::getTile(int x, int y){
     return gameBoard[x][y];
 }

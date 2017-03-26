@@ -13,8 +13,8 @@ public:
     virtual ~Minesweeper();
     void fill_board();
     //accessors
-    bool isMine(int x, int y) const;
-    int getTile(int x, int y) const;
+    bool isMine(int x, int y);
+    int getTile(int x, int y);
 private:
     int num_tiles;
     int num_mines;
