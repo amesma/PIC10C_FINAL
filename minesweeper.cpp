@@ -1,10 +1,9 @@
 #include "minesweeper.h"
-#include <QtGlobal>
 
 Minesweeper::Minesweeper()
 {
     num_tiles = 9;
-    num_mines = 10;
+    num_mines = 9;
     for (size_t i = 0; i < num_tiles; i++)
     {
         for (size_t j = 0; j < num_tiles; j++)
@@ -13,16 +12,20 @@ Minesweeper::Minesweeper()
             gameBoard[i][j] = 0;
         }
     }
+
+    fill_board();
+
 }
-//so far, no memory allocated on heap
 Minesweeper::~Minesweeper(){
 
 }
 
-void Minesweeper::fillBoard(){
-    for (size_t i = 0; i < 10; i++){
+void Minesweeper::fill_board(){
+    for( int i = 0; i < num_mines; i++)
+    {
         int row, col;
 
+<<<<<<< HEAD
         do{
             row = rand() % 9 + 1;
             col = rand() % 9 + 1;
@@ -44,22 +47,60 @@ void Minesweeper::fillBoard(){
 
                 if ( (col + 1) != 10 && gameBoard[row][col+1] != num_mines)
                     gameBoard[row][col+1]++;
+=======
+        //Prevent generating mine on another mine
+        do
+        {
+            row = qrand() % 9;
+            col = qrand() % 9;
+        }while(gameBoard[row][col] == num_tiles);
+>>>>>>> 57ba17f1bcd65f64ccdd5d1cdc8f329f58da0ba0
 
-                if ( (row+1) != 10 && (col -1) != -1 && gameBoard[row+1][col-1] != num_mines)
-                    gameBoard[row+1][col-1]++;
+        //add a mine to the board
+        gameBoard[row][col] = num_tiles;
 
-                if ( (row+1) != 10 && gameBoard[row+1][col] != num_mines)
-                    gameBoard[row+1][col]++;
+    //add left and above
+     if ( row != 0 && (col + 1) != 10 && gameBoard[row-1][col+1] != num_mines){
+            gameBoard[row-1][col+1]++;
+     }
+    //add below mine
+     if ( col != 0 && gameBoard[row][col-1] != num_mines){
+            gameBoard[row][col-1]++;
+     }
+     //add above mine
+     if ( (col + 1) != num_tiles && gameBoard[row][col+1] != num_mines){
+             gameBoard[row][col+1]++;
+     }
+    //add below and to the right
+     if ( (row+1) != num_tiles && (col -1) != -1 && gameBoard[row+1][col-1] != num_mines){
+             gameBoard[row+1][col-1]++;
+     }
+     //add below the mine
+     if ( row != 0 && col != 0 && gameBoard[row-1][col-1] != num_mines){
 
-                if ( (row+1) != 10 && (col+1) != 10 && gameBoard[row+1][col+1] != num_mines)
-                    gameBoard[row+1][col+1]++;
-            }
+         gameBoard[row-1][col-1] = gameBoard[row-1][col-1] + 1;
+     }
+     //add to the left of the mine
+     if ( row != 0 && gameBoard[row-1][col] != num_mines){
+         gameBoard[row-1][col] = gameBoard[row-1][col] + 1;
+     }
+     //add to the right one
+     if ( (row+1) != num_tiles && gameBoard[row+1][col] != num_mines){
+            gameBoard[row+1][col]++;
+     }
+     //add to the top right
+     if ( (row+1) != num_tiles && (col+1) != num_tiles && gameBoard[row+1][col+1] != num_mines){
+             gameBoard[row+1][col+1]++;
+     }
     }
+}
 
-bool Minesweeper::isMine(int x, int y) const {
+
+bool Minesweeper::isMine(int x, int y){
     return (gameBoard[x][y] == num_mines);
 }
 
-int Minesweeper::getTile(int x, int y) const {
+//accessor
+int Minesweeper::getTile(int x, int y){
     return gameBoard[x][y];
 }

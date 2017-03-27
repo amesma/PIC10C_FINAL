@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>601</width>
+    <height>568</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QPushButton" name="newGame">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>210</y>
+      <x>20</x>
+      <y>470</y>
       <width>93</width>
-      <height>28</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -30,23 +30,36 @@
    <widget class="QLCDNumber" name="userScore">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>210</y>
-      <width>64</width>
-      <height>23</height>
+      <x>500</x>
+      <y>470</y>
+      <width>71</width>
+      <height>31</height>
      </rect>
     </property>
    </widget>
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>10</y>
-      <width>201</width>
-      <height>191</height>
+      <x>60</x>
+      <y>0</y>
+      <width>471</width>
+      <height>461</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gameLayout"/>
+   </widget>
+   <widget class="QCheckBox" name="flag_box">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>480</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Flag mines?</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -54,7 +67,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>601</width>
      <height>26</height>
     </rect>
    </property>
