@@ -33,8 +33,9 @@ MainWindow::MainWindow(QWidget *parent) :
         }
     }
 
-    //set up minebutton
-
+    //set up minebuttons
+    for (int row = 0; row < 9; ++row)
+    {
         for (int col = 0; col < 9; ++col){
             mineButton* new_button = new mineButton();
             QPixmap pix(":/normal.png");
@@ -55,7 +56,6 @@ MainWindow::MainWindow(QWidget *parent) :
        }
   }
 
-
     connect(ui->newGame, SIGNAL(clicked()), this, SLOT(reset()));
     connect(mapper, SIGNAL(mapped(QString)), this, SLOT(show_tile(QString)) );
     connect(ui->flag_box, SIGNAL(stateChanged(int)), this, SLOT(flag_mines()));
@@ -69,7 +69,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //set up lose state
     //keep track of bombs
     //update images (recursively?)
-
 }
 
 MainWindow::~MainWindow()
@@ -143,7 +142,6 @@ void MainWindow::change_button(int row, int col, mineButton* button){
     if( m->getTile(row, col) == 9){
         button->setIcon(QIcon(QString(":/mine.png")));
     }
-
 }
 
 void MainWindow::lose_game(){
@@ -218,9 +216,36 @@ void MainWindow::show_tile(QString q){
 
 void MainWindow::recurse_clear(bool can_clear, int row, int col){
 
+
+//    if (push->is_pushed() == false)
+//    {
+//          --cells_left;
+//    }
+
+//    //check to see if button already pressed (not implemented)
+
+//    //check if win/lose (not implemented)
+
+//    //recursively call to clear board
+//    if ( m->getTile(row, col) == 0 ) {
+//        --cells_left;
+//        recurse_clear(true, row, col);
+//    }
+//    //set a signal
+//    change_button(row, col, push);
+
+//    push->set_pushed(true);
+//    //lose state
+//    if ( m->isMine(row,col))
+//    {
+//        lose_game();
+//    }
 }
 
 void MainWindow::flag_mines(){
+
+
+}
 
 
 

@@ -21,40 +21,13 @@ Minesweeper::~Minesweeper(){
 }
 
 void Minesweeper::fill_board(){
-    for( int i = 0; i < num_mines; i++)
+    for( int i = 0; i < num_mines; ++i)
     {
         int row, col;
-
-<<<<<<< HEAD
         do{
-            row = rand() % 9 + 1;
-            col = rand() % 9 + 1;
-        }while(gameBoard[row][col] == num_mines);
-
-        gameBoard[row][col] = num_mines;
-
-        if ( (row-1) != -1 && (col -1) != -1 && gameBoard[row-1][col-1] != num_mines)
-                    gameBoard[row-1][col-1]++;
-
-                if ( (row-1) != -1 && gameBoard[row-1][col] != num_mines)
-                    gameBoard[row-1][col]++;
-
-                if ( (row-1) != -1 && (col + 1) != 10 && gameBoard[row-1][col+1] != num_mines)
-                    gameBoard[row-1][col+1]++;
-
-                if ( (col -1) != -1 && gameBoard[row][col-1] != num_mines)
-                    gameBoard[row][col-1]++;
-
-                if ( (col + 1) != 10 && gameBoard[row][col+1] != num_mines)
-                    gameBoard[row][col+1]++;
-=======
-        //Prevent generating mine on another mine
-        do
-        {
             row = qrand() % 9;
             col = qrand() % 9;
         }while(gameBoard[row][col] == num_tiles);
->>>>>>> 57ba17f1bcd65f64ccdd5d1cdc8f329f58da0ba0
 
         //add a mine to the board
         gameBoard[row][col] = num_tiles;
@@ -94,7 +67,6 @@ void Minesweeper::fill_board(){
      }
     }
 }
-
 
 bool Minesweeper::isMine(int x, int y){
     return (gameBoard[x][y] == num_mines);
