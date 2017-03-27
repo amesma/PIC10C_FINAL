@@ -37,7 +37,8 @@ private:
     int bombs_found;
     int cells_left;
     int hasFlag[9][9];
-    int mines = 10;
+    int mines = 9;
+    int button_size = 100;
 
 protected slots:
     /**

@@ -12,6 +12,7 @@ public:
    // Minesweeper(const& Minesweeper m):num_tiles(m.num_tiles){}
     virtual ~Minesweeper();
     void fill_board();
+    //accessors
     bool isMine(int x, int y);
     int getTile(int x, int y);
 private:

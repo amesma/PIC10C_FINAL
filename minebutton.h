@@ -4,18 +4,17 @@
 #endif // MINEBUTTON_H
 
 #include <QPushButton>
-#include <QMouseEvent>
-#include <QDebug>
 
 class mineButton: public QPushButton{
 
 Q_OBJECT
 
 public:
-    mineButton(QWidget* parent = 0);
     mineButton(QString);
-
+    mineButton():pushed(false){}
     ~mineButton();
-    //void mousePressEvent(QMouseEvent*);
-
+    void set_pushed(bool push);
+    bool is_pushed();
+private:
+    bool pushed;
 };

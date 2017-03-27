@@ -32,37 +32,39 @@ void Minesweeper::fill_board(){
             col = qrand() % 9;
         }while(gameBoard[row][col] == num_tiles);
 
-        gameBoard[row][col] = num_tiles; //Number 9 indiciates a mine
+        //add a mine to the board
+        gameBoard[row][col] = num_tiles;
 
+    //add left and above
+     if ( row != 0 && (col + 1) != 10 && gameBoard[row-1][col+1] != num_mines){
+            gameBoard[row-1][col+1]++;
+     }
+    //add below mine
+     if ( col != 0 && gameBoard[row][col-1] != num_mines){
+            gameBoard[row][col-1]++;
+     }
+     //add above mine
+     if ( (col + 1) != num_tiles && gameBoard[row][col+1] != num_mines){
+             gameBoard[row][col+1]++;
+     }
+    //add below and to the right
+     if ( (row+1) != num_tiles && (col -1) != -1 && gameBoard[row+1][col-1] != num_mines){
+             gameBoard[row+1][col-1]++;
+     }
+     //add below the mine
      if ( row != 0 && col != 0 && gameBoard[row-1][col-1] != num_mines){
 
          gameBoard[row-1][col-1] = gameBoard[row-1][col-1] + 1;
      }
-
+     //add to the left of the mine
      if ( row != 0 && gameBoard[row-1][col] != num_mines){
          gameBoard[row-1][col] = gameBoard[row-1][col] + 1;
      }
-
-     if ( row != 0 && (col + 1) != 10 && gameBoard[row-1][col+1] != num_mines){
-            gameBoard[row-1][col+1]++;
-     }
-
-     if ( (col -1) != -1 && gameBoard[row][col-1] != num_mines){
-            gameBoard[row][col-1]++;
-     }
-
-     if ( (col + 1) != num_tiles && gameBoard[row][col+1] != num_mines){
-             gameBoard[row][col+1]++;
-     }
-
-     if ( (row+1) != num_tiles && (col -1) != -1 && gameBoard[row+1][col-1] != num_mines){
-             gameBoard[row+1][col-1]++;
-     }
-
+     //add to the right one
      if ( (row+1) != num_tiles && gameBoard[row+1][col] != num_mines){
             gameBoard[row+1][col]++;
      }
-
+     //add to the top right
      if ( (row+1) != num_tiles && (col+1) != num_tiles && gameBoard[row+1][col+1] != num_mines){
              gameBoard[row+1][col+1]++;
      }
@@ -74,6 +76,7 @@ bool Minesweeper::isMine(int x, int y){
     return (gameBoard[x][y] == num_mines);
 }
 
+//accessor
 int Minesweeper::getTile(int x, int y){
     return gameBoard[x][y];
 }
