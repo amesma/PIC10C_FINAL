@@ -1,23 +1,5 @@
-<<<<<<< HEAD
 #ifndef MINEBUTTON_H
 #define MINEBUTTON_H
-
-#endif // MINEBUTTON_H
-
-#include <QPushButton>
-
-class mineButton: public QPushButton{
-
-public:
-    mineButton();
-    ~mineButton();
-private:
-};
-=======
-#ifndef MINEBUTTON_H
-#define MINEBUTTON_H
-
-#endif // MINEBUTTON_H
 
 #include <QPushButton>
 
@@ -34,4 +16,5 @@ public:
 private:
     bool pushed;
 };
->>>>>>> 57ba17f1bcd65f64ccdd5d1cdc8f329f58da0ba0
+
+#endif // MINEBUTTON_H
