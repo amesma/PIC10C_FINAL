@@ -28,15 +28,14 @@ private:
     Minesweeper *m;
     QSignalMapper *mapper;
 
-    bool game_start;
     bool game_done;
-    int times_played;
     int cells_flagged;
     int bombs_found;
     int cells_left;
     int hasFlag[9][9];
     int mines = 9;
     int button_size = 100;
+    bool flag_on = false;
 
 protected slots:
     /**

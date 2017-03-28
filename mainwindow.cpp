@@ -14,9 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     //initialize some play variables
-    game_start = false;
     game_done = false;
-    times_played = 0;
     cells_flagged = 0;
     bombs_found = 0;
     cells_left = 72;
@@ -80,9 +78,7 @@ resets game for if the player wins or loses
 */
 void MainWindow::reset() {
 
-    game_start = false;
     game_done = false;
-    times_played = 0;
     cells_flagged = 0;
     bombs_found = 0;
     cells_left = 0;
@@ -94,10 +90,9 @@ void MainWindow::reset() {
         for( int j = 0; j < 9; j++ )
         {
             QString coord = QString::number(i)+","+QString::number(j);
-            mineButton *push = qobject_cast<mineButton *>(mapper->mapping(coord));
-
-            push->setIcon (QIcon(":/images/norm.png"));
-            push->setIconSize (QSize(button_size,button_size));
+            mineButton *push = qobject_cast<mineButton*>(mapper->mapping(coord));
+            push->setIcon(QIcon(":/normal.png"));
+            push->setIconSize(QSize(button_size,button_size));
             push->set_pushed(false);
             hasFlag[i][j] = 0;
         }
@@ -121,6 +116,21 @@ void MainWindow::reset() {
 void MainWindow::change_button(int row, int col, mineButton* button){
     //Set the image according to the value of the cell
 
+    if (flag_on == true && cells_left > 0 && ((9 - cells_flagged) > 0) && button->is_pushed() == false)
+    {
+        button->setIcon(QIcon(QString(":/flag.png")));
+        ++cells_flagged;
+        //found a bomb
+        if (m->getTile(row, col) == 9){
+        ++bombs_found;
+        }
+        //get to win state
+        if (bombs_found == 9){
+            win_game();
+        }
+    }
+    else{
+
     if( m->getTile(row, col) == 0)
        { button->setIcon(QIcon(QString(":/empty.png")));}
     if( m->getTile(row, col) == 1)
@@ -142,6 +152,8 @@ void MainWindow::change_button(int row, int col, mineButton* button){
     if( m->getTile(row, col) == 9){
         button->setIcon(QIcon(QString(":/mine.png")));
     }
+    }
+
 }
 
 void MainWindow::lose_game(){
@@ -205,7 +217,6 @@ void MainWindow::show_tile(QString q){
     }
     //set a signal
     change_button(row, col, push);
-
     push->set_pushed(true);
     //lose state
     if ( m->isMine(row,col))
@@ -242,6 +253,7 @@ void MainWindow::recurse_clear(bool can_clear, int row, int col){
 //    }
 }
 void MainWindow::win_game(){
+    //flag all 9 to win
     QMessageBox messageBox;
     messageBox.critical(0,"Congratulations!","You Won!");
     messageBox.setFixedSize(500,200);
@@ -249,9 +261,11 @@ void MainWindow::win_game(){
 }
 
 void MainWindow::flag_mines(){
-
-
+if (ui->flag_box->isChecked() == true){
+    flag_on = true;
 }
-
-
-
+else{
+    flag_on = false;
+}
+//not working for now
+}
