@@ -189,10 +189,10 @@ void MainWindow::show_tile(QString q){
     mineButton *push = qobject_cast<mineButton *>(mapper->mapping(q));
 //get button pressed
 
-    if (push->is_pushed() == false)
-    {
-          --cells_left;
-    }
+//    if (push->is_pushed() == false)
+//    {
+//          --cells_left;
+//    }
 
     //check to see if button already pressed (not implemented)
 
@@ -240,6 +240,12 @@ void MainWindow::recurse_clear(bool can_clear, int row, int col){
 //    {
 //        lose_game();
 //    }
+}
+void MainWindow::win_game(){
+    QMessageBox messageBox;
+    messageBox.critical(0,"Congratulations!","You Won!");
+    messageBox.setFixedSize(500,200);
+    game_done = true;
 }
 
 void MainWindow::flag_mines(){
