@@ -91,7 +91,10 @@ void MainWindow::reset() {
         {
             QString coord = QString::number(i)+","+QString::number(j);
             mineButton *push = qobject_cast<mineButton*>(mapper->mapping(coord));
-            push->setIcon(QIcon(":/normal.png"));
+            QPixmap pix(":/normal.png");
+            QIcon icon(pix);
+            push->setIcon(icon);
+
             push->setIconSize(QSize(button_size,button_size));
             push->set_pushed(false);
             hasFlag[i][j] = 0;
@@ -119,6 +122,7 @@ void MainWindow::change_button(int row, int col, mineButton* button){
     if (flag_on == true && cells_left > 0 && ((9 - cells_flagged) > 0) && button->is_pushed() == false)
     {
         button->setIcon(QIcon(QString(":/flag.png")));
+        button->set_pushed(true);
         ++cells_flagged;
         //found a bomb
         if (m->getTile(row, col) == 9){
@@ -201,14 +205,10 @@ void MainWindow::show_tile(QString q){
     mineButton *push = qobject_cast<mineButton *>(mapper->mapping(q));
 //get button pressed
 
-//    if (push->is_pushed() == false)
-//    {
-//          --cells_left;
-//    }
-
-    //check to see if button already pressed (not implemented)
-
-    //check if win/lose (not implemented)
+    if (push->is_pushed() == false)
+    {
+        --cells_left;
+    }
 
     //recursively call to clear board
     if ( m->getTile(row, col) == 0 ) {
@@ -218,6 +218,7 @@ void MainWindow::show_tile(QString q){
     //set a signal
     change_button(row, col, push);
     push->set_pushed(true);
+
     //lose state
     if ( m->isMine(row,col))
     {
@@ -227,30 +228,64 @@ void MainWindow::show_tile(QString q){
 
 void MainWindow::recurse_clear(bool can_clear, int row, int col){
 
+    QString coord = QString::number(row)+","+QString::number(col);
+    mineButton *push = qobject_cast<mineButton*>(mapper->mapping(coord));
+if (flag_on == false){
+  if ( m->getTile(row, col) == 0 && push->is_pushed() == false && can_clear == true) {
 
-//    if (push->is_pushed() == false)
-//    {
-//          --cells_left;
-//    }
+     change_button(row, col, push);
+     push->set_pushed(true);
+     cells_left--;
+        //should check left right and up down
 
-//    //check to see if button already pressed (not implemented)
+  if (cells_left == 9 && m->isMine(row, col) == false){
 
-//    //check if win/lose (not implemented)
+      win_game();
+  }
 
-//    //recursively call to clear board
-//    if ( m->getTile(row, col) == 0 ) {
-//        --cells_left;
-//        recurse_clear(true, row, col);
-//    }
-//    //set a signal
-//    change_button(row, col, push);
+  if (m->getTile(row, col) == 0)
+  {
+      can_clear = true;
+  }
+  else{
+      can_clear = false;
+  }
 
-//    push->set_pushed(true);
-//    //lose state
-//    if ( m->isMine(row,col))
-//    {
-//        lose_game();
-//    }
+  if ((row - 1 != -1 ) && (col - 1) != -1)
+  {
+    recurse_clear(can_clear, row - 1, col - 1);
+  }
+  if ((col - 1) > -1)
+  {
+     recurse_clear(can_clear, row, col - 1);
+  }
+ if ((row - 1) > -1)
+  {
+    recurse_clear(can_clear, row - 1, col);
+  }
+  if ((row - 1 > -1 ) && (col + 1) < 9)
+  {
+    recurse_clear(can_clear, row - 1, col + 1);
+  }
+  if ((col + 1) < 9)
+  {
+    recurse_clear(can_clear, row, col + 1);
+  }
+  if ((row + 1) < 9)
+  {
+    recurse_clear(can_clear, row + 1, col);
+  }
+  if ((row + 1 < 9) && (col + 1) < 9)
+  {
+    recurse_clear(can_clear, row+1, col+1);
+  }
+  if ((col - 1 > -1 ) && (row + 1) < 9)
+  {
+    recurse_clear(can_clear, row + 1, col - 1);
+  }
+
+  }
+}
 }
 void MainWindow::win_game(){
     //flag all 9 to win
