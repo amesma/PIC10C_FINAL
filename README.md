@@ -14,7 +14,9 @@ Goal 3: Make moves possible. All buttons should click and be associated with sig
 
 Goal 3: Moves should count correctly and winning and losing should be implemented properly. Create a setting that allows the user to increase the number of tiles on the board to play a 16x16 board.
 
-Current goal: Goal 2. Achieved. Currently I need to make it so that when a button pressed and is clear, you can recursively show the tiles until a tile that has a number on it (meaning it is bordering a bomb) 
+Current goal: Goal 2. Achieved. Currently I need to make it so that when a button pressed and is clear, you can recursively show the tiles until a tile that has a number on it (meaning it is bordering a bomb).
+
+3/29/17: Goal 3 Achieved, flags not tested, win state not tested. Lose state is tested.
 
 Test cases:
 
