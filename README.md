@@ -18,6 +18,6 @@ Current goal: Goal 2. Achieved. Currently I need to make it so that when a butto
 
 3/29/17: Goal 3 Achieved, flags not tested, win state not tested. Lose state is tested.
 
-Test cases:
+Test cases: Click new game without clicking on other tiles. Keep flagging until more than 9 tiles are clicked.
 
 Bugs:
